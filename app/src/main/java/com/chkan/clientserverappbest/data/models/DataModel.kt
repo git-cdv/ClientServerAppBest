@@ -1,7 +1,6 @@
 package com.chkan.clientserverappbest.data.models
 
 import com.chkan.clientserverappbest.domain.ModelDomain
-import com.chkan.clientserverappbest.ui.models.ModelUi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -39,7 +38,16 @@ fun DataModel.mapToDomain() : List<ModelDomain> =
             id = it.id,
             firstName = it.firstName,
             lastName = it.lastName,
-            picture = it.picture,
-            total = total
+            picture = it.picture
+        )
+    }
+
+fun List<Data>.mapToDomain() : List<ModelDomain> =
+    this.map {
+        ModelDomain (
+            id = it.id,
+            firstName = it.firstName,
+            lastName = it.lastName,
+            picture = it.picture
         )
     }

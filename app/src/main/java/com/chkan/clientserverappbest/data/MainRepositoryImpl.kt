@@ -15,4 +15,5 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun getData(page: Int, size:Int): List<ModelDomain> {
         return mainService.getPassengers(page,size).mapToDomain()
     }
+    override fun getPagingSource() = MainPagingSource(mainService)
 }

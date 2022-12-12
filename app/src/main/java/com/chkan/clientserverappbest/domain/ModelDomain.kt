@@ -5,7 +5,7 @@ import com.chkan.clientserverappbest.ui.models.ModelUi
 /**
  * @author Dmytro Chkan on 01.12.2022.
  */
-data class ModelDomain(val id: String, val firstName: String, val lastName: String, val picture: String, val total: Int)
+data class ModelDomain(val id: String, val firstName: String, val lastName: String, val picture: String)
 
 fun List<ModelDomain>.mapToUi() : List<ModelUi> =
     this.map {
