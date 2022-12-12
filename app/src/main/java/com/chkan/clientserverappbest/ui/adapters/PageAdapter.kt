@@ -25,7 +25,7 @@ class PageAdapter : PagingDataAdapter<ModelDomain, PageViewHolder>(ARTICLE_DIFF_
 
     override fun onBindViewHolder(holder: PageViewHolder, position: Int) {
         val item = getItem(position)
-        if (item != null) {//can get null for placeholder
+        if (item != null) {//can get null for placeholder (turn on in config)
             holder.bind(item)
         }
     }

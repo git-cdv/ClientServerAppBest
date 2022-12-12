@@ -20,9 +20,8 @@ private val mainService: MainService
         return try {
             val pageNumber = params.key ?: INITIAL_PAGE_NUMBER
             val pageSize = params.loadSize
-            Log.d("CHKAN", "pageNumber - $pageNumber, pageSize - $pageSize")
             val result = mainService.getPassengers(pageNumber,pageSize).list.mapToDomain()
-            val nextPageNumber = if (result.isEmpty()) null else pageNumber + 1
+            val nextPageNumber = if (result.isEmpty()) null else pageNumber + 1 //если последняя стр возвращаем null
             val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null
             LoadResult.Page(result, prevPageNumber, nextPageNumber)
         } catch (e: HttpException) {
