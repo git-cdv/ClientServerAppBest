@@ -6,3 +6,4 @@ Best Practices in simple Client-Server App
 * BaseUseCase with Coroutines and StateFlow
 * DI with Hilt
 * NetworkModule with Retrofit, ChuckInterceptor, RequestInterceptor
+* Paging with Paging 3 library from Jetpack
