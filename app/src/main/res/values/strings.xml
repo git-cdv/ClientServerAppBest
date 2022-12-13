@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ClientServerAppBest</string>
+    <string name="simple_list">Simple list</string>
+    <string name="list_with_search">List with search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

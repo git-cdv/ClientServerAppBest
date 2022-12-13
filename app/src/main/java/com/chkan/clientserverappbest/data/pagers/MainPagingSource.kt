@@ -1,6 +1,5 @@
-package com.chkan.clientserverappbest.data
+package com.chkan.clientserverappbest.data.pagers
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.chkan.clientserverappbest.data.models.mapToDomain

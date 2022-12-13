@@ -2,7 +2,9 @@ package com.chkan.clientserverappbest.di
 
 import android.content.Context
 import com.chkan.clientserverappbest.BuildConfig
+import com.chkan.clientserverappbest.data.network.AuthInterceptor
 import com.chkan.clientserverappbest.data.network.MainService
+import com.chkan.clientserverappbest.data.network.SearchService
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -15,6 +17,7 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -36,7 +39,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(BASE_URL : String, okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
+    @Named("Main")
+    internal fun provideRetrofit(BASE_URL : String, @Named("Main") okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(BASE_URL)
         .client(okHttpClient)
@@ -44,7 +48,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideMainService(retrofit : Retrofit) : MainService = retrofit.create(
+    internal fun provideMainService(@Named("Main") retrofit : Retrofit) : MainService = retrofit.create(
         MainService::class.java)
 
     @Provides
@@ -59,7 +63,8 @@ object NetworkModule {
     }
 
     @Provides
-    internal fun okHttpClient(
+    @Named("Main")
+    internal fun mainHttpClient(
         chuck: ChuckerInterceptor,
         requestInterceptor: Interceptor
     ): OkHttpClient {
@@ -68,4 +73,27 @@ object NetworkModule {
             .addInterceptor(requestInterceptor)
         return builder.build()
     }
+
+    @Provides
+    @Named("Search")
+    internal fun searchHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor("220796fbb4634c2a95ef398e72e98ae5"))
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @Named("Search")
+    internal fun provideSearchRetrofit(@Named("Search") okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .baseUrl("https://newsapi.org")
+        .client(okHttpClient)
+        .build()
+
+    @Provides
+    @Singleton
+    internal fun provideSearchService(@Named("Search") retrofit : Retrofit) : SearchService = retrofit.create(
+        SearchService::class.java)
+
 }

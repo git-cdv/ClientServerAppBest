@@ -2,6 +2,7 @@ package com.chkan.clientserverappbest.data
 
 import com.chkan.clientserverappbest.data.models.mapToDomain
 import com.chkan.clientserverappbest.data.network.MainService
+import com.chkan.clientserverappbest.data.pagers.MainPagingSource
 import com.chkan.clientserverappbest.domain.MainRepository
 import com.chkan.clientserverappbest.domain.ModelDomain
 import javax.inject.Inject

@@ -13,7 +13,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.commit {
-            add(R.id.container, MainFragment())
+            add(R.id.container, MenuFragment())
+        }
+    }
+
+    fun navigateToSimpleList(){
+        supportFragmentManager.commit {
+            replace(R.id.container, MainFragment())
+        }
+    }
+
+    fun navigateToSearchList(){
+        supportFragmentManager.commit {
+            replace(R.id.container, SearchFragment())
         }
     }
 }
