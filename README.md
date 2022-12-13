@@ -7,3 +7,4 @@ Best Practices in simple Client-Server App
 * DI with Hilt
 * NetworkModule with Retrofit, ChuckInterceptor, RequestInterceptor
 * Paging with Paging 3 library from Jetpack
+* Search with paging
